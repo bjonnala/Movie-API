@@ -31,5 +31,14 @@ namespace MovieAPI.BLL
             return isValid;
 
         }
+
+        public bool createUser()
+        {
+
+            bool isValid = false;
+            
+            return isValid;
+
+        }
     }
 }
