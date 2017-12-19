@@ -15,12 +15,14 @@ namespace MovieAPI.Controllers
     {
 
         IUsers users;
+        IUserSessions usersessions;
         HttpRequestMessage req;
         usersInsertValidator ivalidator;
 
-        public UsersController(IUsers usersparam)
+        public UsersController(IUsers usersparam, IUserSessions usersessionsparam)
         {
             users = usersparam;
+            usersessions = usersessionsparam;
         }
 
         public UsersController()
@@ -86,12 +88,12 @@ namespace MovieAPI.Controllers
                 if (string.IsNullOrWhiteSpace(ureq.password))
                 {
                     return Utils.CreateErrorResponse(req, "password cannot be blank");
-
                 }
-                if (users.checkDuplicateEmail(ureq.email))
-                {
-                    return Utils.CreateErrorResponse(req, "email already exists");
-                }
+               
+            }
+            if (users.checkDuplicateEmail(ureq.email))
+            {
+                return Utils.CreateErrorResponse(req, "email already exists");
             }
 
             // Calculate salt
@@ -116,23 +118,33 @@ namespace MovieAPI.Controllers
 
 
 
-            ////ObjectId userid = da.Post(ureq);
-            //if (userid != null)
-            //{
-            //    //string authorizekey = Utils.GenerateLogintoken(userid.ToString());
-            //    //st.UpdateToken(userid.ToString(), authorizekey);
-            //    LoginRegisterUserResponse respo = new LoginRegisterUserResponse();
-            //    //respo.id = userid.ToString();
-            //    respo.authorizeKey = Utils.GenerateLogintoken(respo.id);
-            //    respo.chatAuthKey = string.Empty;
-            //    return Utils.CreateSuccessResponse(req, respo);
-            //}
-            //else
-            //{
-            //    return Utils.CreateErrorResponse(req, "Error registering a user. Please try again");
-            //}
+            
+            int userId = users.createUser(ureq);
+            if (userId != 0)
+            {
+                string authorizekey = Utils.GenerateLogintoken(userId.ToString());
+                string res = usersessions.updateAccessToken(userId, authorizekey);
+                if (!string.IsNullOrWhiteSpace(res))
+                {
 
-            return Utils.CreateErrorResponse(req, "Error registering a user. Please try again");
+                    return Utils.CreateErrorResponse(req, "Error registering a user. Please try again");
+                }
+                else
+                {
+                    LoginRegisterUserResponse respo = new LoginRegisterUserResponse();
+                    respo.id = userId.ToString();
+                    respo.authorizeKey = authorizekey;
+
+                    return Utils.CreateSuccessResponse(req, respo);
+
+                }
+            }
+            else
+            {
+                return Utils.CreateErrorResponse(req, "Error registering a user. Please try again");
+            }
+
+            
 
         }
 

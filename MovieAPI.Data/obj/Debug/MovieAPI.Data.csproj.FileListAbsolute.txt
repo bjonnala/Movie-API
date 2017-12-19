@@ -7,3 +7,4 @@ C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.D
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Data\obj\Debug\MovieAPI.Data.dll
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Data\obj\Debug\MovieAPI.Data.pdb
+C:\Users\raghu.jonnala\documents\visual studio 2015\Projects\MovieAPI\MovieAPI.Data\obj\Debug\MovieAPI.Data.csprojResolveAssemblyReference.cache

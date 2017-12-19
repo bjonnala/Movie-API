@@ -88,9 +88,6 @@
     <Compile Include="Role.cs">
       <DependentUpon>Movie.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>Movie.tt</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Movie.tt</DependentUpon>
     </Compile>

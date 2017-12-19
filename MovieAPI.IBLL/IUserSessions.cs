@@ -9,6 +9,6 @@ namespace MovieAPI.IBLL
     public interface IUserSessions
     {
         string getAccessToken(int userId);
-        
+        string updateAccessToken(int userId, string accessToken);
     }
 }

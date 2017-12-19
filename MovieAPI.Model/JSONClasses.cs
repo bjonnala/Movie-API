@@ -99,24 +99,24 @@ namespace MovieAPI.Model
         public string error { get; set; }
     }
 
-    public class RegisterUserRequestJSON
-    {
-        public string email { get; set; }
-        public string password { get; set; }
-        public string socialMediaAccessToken { get; set; }
-        public string socialMediaUserId { get; set; }
-        public string network { get; set; }
+    //public class RegisterUserRequestJSON
+    //{
+    //    public string email { get; set; }
+    //    public string password { get; set; }
+    //    public string socialMediaAccessToken { get; set; }
+    //    public string socialMediaUserId { get; set; }
+    //    public string network { get; set; }
 
-        //public DateTime dob { get; set; }
-        //public string zipcode { get; set; }
-        public string firstName { get; set; }
-        //public string lastName { get; set; }
-        public string hashedpassword { get; set; }
-        public string salt { get; set; }
+    //    //public DateTime dob { get; set; }
+    //    //public string zipcode { get; set; }
+    //    public string firstName { get; set; }
+    //    //public string lastName { get; set; }
+    //    public string hashedpassword { get; set; }
+    //    public string salt { get; set; }
 
-        //public int trustLevel { get; set; }
-        //public string phone { get; set; }
-    }
+    //    //public int trustLevel { get; set; }
+    //    //public string phone { get; set; }
+    //}
 
     public class ValidateLoveLabIdRequestJSON
     {

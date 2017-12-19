@@ -63,16 +63,6 @@
     <NavigationProperty Name="Genre" Relationship="Self.FK_MoviesGenre_Genre" FromRole="MoviesGenre" ToRole="Genre" />
     <NavigationProperty Name="Movy" Relationship="Self.FK_MoviesGenre_Movies" FromRole="MoviesGenre" ToRole="Movies" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="UserReview">
     <Key>
       <PropertyRef Name="UserReviews_ID" />
@@ -366,7 +356,6 @@
     <EntitySet Name="Languages" EntityType="Self.Language" />
     <EntitySet Name="Movies" EntityType="Self.Movy" />
     <EntitySet Name="MoviesGenres" EntityType="Self.MoviesGenre" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="UserReviews" EntityType="Self.UserReview" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -435,5 +424,15 @@
       <End Role="UsersTransaction" EntitySet="UsersTransactions" />
       <End Role="UsersRental" EntitySet="UsersRentals" />
     </AssociationSet>
+    <FunctionImport Name="pr_RegisterUser">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="salt" Mode="In" Type="String" />
+      <Parameter Name="hashedpassword" Mode="In" Type="String" />
+      <Parameter Name="network" Mode="In" Type="String" />
+      <Parameter Name="socialMediaAccessToken" Mode="In" Type="String" />
+      <Parameter Name="socialMediaUserId" Mode="In" Type="String" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="userId" Mode="InOut" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

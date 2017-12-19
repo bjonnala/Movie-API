@@ -12,6 +12,8 @@ namespace MovieAPI.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MovieEntities : DbContext
     {
@@ -31,7 +33,6 @@ namespace MovieAPI.Data
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Movy> Movies { get; set; }
         public virtual DbSet<MoviesGenre> MoviesGenres { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserReview> UserReviews { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -40,5 +41,38 @@ namespace MovieAPI.Data
         public virtual DbSet<UsersSocialMedia> UsersSocialMedias { get; set; }
         public virtual DbSet<UsersTransaction> UsersTransactions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+    
+        public virtual int pr_RegisterUser(string email, string salt, string hashedpassword, string network, string socialMediaAccessToken, string socialMediaUserId, string firstname, ObjectParameter userId)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var saltParameter = salt != null ?
+                new ObjectParameter("salt", salt) :
+                new ObjectParameter("salt", typeof(string));
+    
+            var hashedpasswordParameter = hashedpassword != null ?
+                new ObjectParameter("hashedpassword", hashedpassword) :
+                new ObjectParameter("hashedpassword", typeof(string));
+    
+            var networkParameter = network != null ?
+                new ObjectParameter("network", network) :
+                new ObjectParameter("network", typeof(string));
+    
+            var socialMediaAccessTokenParameter = socialMediaAccessToken != null ?
+                new ObjectParameter("socialMediaAccessToken", socialMediaAccessToken) :
+                new ObjectParameter("socialMediaAccessToken", typeof(string));
+    
+            var socialMediaUserIdParameter = socialMediaUserId != null ?
+                new ObjectParameter("socialMediaUserId", socialMediaUserId) :
+                new ObjectParameter("socialMediaUserId", typeof(string));
+    
+            var firstnameParameter = firstname != null ?
+                new ObjectParameter("firstname", firstname) :
+                new ObjectParameter("firstname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_RegisterUser", emailParameter, saltParameter, hashedpasswordParameter, networkParameter, socialMediaAccessTokenParameter, socialMediaUserIdParameter, firstnameParameter, userId);
+        }
     }
 }

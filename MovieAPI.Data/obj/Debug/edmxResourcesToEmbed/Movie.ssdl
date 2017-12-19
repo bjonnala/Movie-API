@@ -61,16 +61,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <Property Name="RoleName" Type="varchar" MaxLength="50" />
     <Property Name="createdDate" Type="datetime" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="UserReviews">
     <Key>
       <PropertyRef Name="UserReviews_ID" />
@@ -331,6 +321,16 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="pr_RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="salt" Type="varchar" Mode="In" />
+    <Parameter Name="hashedpassword" Type="varchar(max)" Mode="In" />
+    <Parameter Name="network" Type="varchar" Mode="In" />
+    <Parameter Name="socialMediaAccessToken" Type="varchar(max)" Mode="In" />
+    <Parameter Name="socialMediaUserId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="InOut" />
+  </Function>
   <EntityContainer Name="MovieModelStoreContainer">
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" Schema="dbo" store:Type="Tables" />
@@ -338,7 +338,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MoviesGenre" EntityType="Self.MoviesGenre" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserReviews" EntityType="Self.UserReviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />

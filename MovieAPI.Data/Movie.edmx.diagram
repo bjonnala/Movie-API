@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="MovieModel.Language" Width="1.5" PointX="1.5" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieModel.Movy" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieModel.MoviesGenre" Width="1.5" PointX="8" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieModel.UserReview" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieModel.UserRole" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />

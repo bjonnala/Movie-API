@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="Actor_ID" />
@@ -65,16 +65,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <Property Name="Roles_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="50" />
           <Property Name="createdDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="UserReviews">
           <Key>
@@ -336,6 +326,16 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="pr_RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="salt" Type="varchar" Mode="In" />
+          <Parameter Name="hashedpassword" Type="varchar(max)" Mode="In" />
+          <Parameter Name="network" Type="varchar" Mode="In" />
+          <Parameter Name="socialMediaAccessToken" Type="varchar(max)" Mode="In" />
+          <Parameter Name="socialMediaUserId" Type="varchar(max)" Mode="In" />
+          <Parameter Name="firstname" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="InOut" />
+        </Function>
         <EntityContainer Name="MovieModelStoreContainer">
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" Schema="dbo" store:Type="Tables" />
@@ -343,7 +343,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MoviesGenre" EntityType="Self.MoviesGenre" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserReviews" EntityType="Self.UserReviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -419,8 +418,7 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
             <End Role="UsersTransaction" EntitySet="UsersTransaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -486,16 +484,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <Property Name="createdDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Genre" Relationship="Self.FK_MoviesGenre_Genre" FromRole="MoviesGenre" ToRole="Genre" />
           <NavigationProperty Name="Movy" Relationship="Self.FK_MoviesGenre_Movies" FromRole="MoviesGenre" ToRole="Movies" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="UserReview">
           <Key>
@@ -790,7 +778,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <EntitySet Name="Languages" EntityType="Self.Language" />
           <EntitySet Name="Movies" EntityType="Self.Movy" />
           <EntitySet Name="MoviesGenres" EntityType="Self.MoviesGenre" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="UserReviews" EntityType="Self.UserReview" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -859,6 +846,16 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
             <End Role="UsersTransaction" EntitySet="UsersTransactions" />
             <End Role="UsersRental" EntitySet="UsersRentals" />
           </AssociationSet>
+          <FunctionImport Name="pr_RegisterUser">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="salt" Mode="In" Type="String" />
+            <Parameter Name="hashedpassword" Mode="In" Type="String" />
+            <Parameter Name="network" Mode="In" Type="String" />
+            <Parameter Name="socialMediaAccessToken" Mode="In" Type="String" />
+            <Parameter Name="socialMediaUserId" Mode="In" Type="String" />
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -920,17 +917,6 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
                 <ScalarProperty Name="Movies_ID" ColumnName="Movies_ID" />
                 <ScalarProperty Name="Genre_ID" ColumnName="Genre_ID" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MovieModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1030,6 +1016,7 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="MovieModel.Store.pr_RegisterUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

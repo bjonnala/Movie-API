@@ -12,6 +12,6 @@ namespace MovieAPI.IBLL
     {
         string getUserDetails(int UserId);
         bool checkDuplicateEmail(string email);
-        bool createUser();
+        int createUser(RegisterUserRequestJSON req);
     }
 }
