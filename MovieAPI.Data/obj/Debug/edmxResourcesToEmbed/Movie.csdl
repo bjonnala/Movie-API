@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Actor">
+    <Key>
+      <PropertyRef Name="Actor_ID" />
+    </Key>
+    <Property Name="Actor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ActorMovies" Relationship="Self.FK_ActorMovies_Actor" FromRole="Actor" ToRole="ActorMovies" />
+  </EntityType>
+  <EntityType Name="ActorMovy">
+    <Key>
+      <PropertyRef Name="ActorMovies_ID" />
+    </Key>
+    <Property Name="ActorMovies_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Actor_ID" Type="Int32" Nullable="false" />
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actor" Relationship="Self.FK_ActorMovies_Actor" FromRole="ActorMovies" ToRole="Actor" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_ActorMovies_Movies" FromRole="ActorMovies" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="Genre_ID" />
+    </Key>
+    <Property Name="Genre_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genre1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MoviesGenres" Relationship="Self.FK_MoviesGenre_Genre" FromRole="Genre" ToRole="MoviesGenre" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Language_ID" />
+    </Key>
+    <Property Name="Language_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Language1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK_Movies_Language" FromRole="Language" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Movy">
+    <Key>
+      <PropertyRef Name="Movies_ID" />
+    </Key>
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Language_ID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ActorMovies" Relationship="Self.FK_ActorMovies_Movies" FromRole="Movies" ToRole="ActorMovies" />
+    <NavigationProperty Name="Language" Relationship="Self.FK_Movies_Language" FromRole="Movies" ToRole="Language" />
+    <NavigationProperty Name="MoviesGenres" Relationship="Self.FK_MoviesGenre_Movies" FromRole="Movies" ToRole="MoviesGenre" />
+    <NavigationProperty Name="UserReviews" Relationship="Self.FK_UserReviews_Movies" FromRole="Movies" ToRole="UserReviews" />
+    <NavigationProperty Name="UsersRentals" Relationship="Self.FK_UsersRental_Movies" FromRole="Movies" ToRole="UsersRental" />
+  </EntityType>
+  <EntityType Name="MoviesGenre">
+    <Key>
+      <PropertyRef Name="MoviesGenre_ID" />
+    </Key>
+    <Property Name="MoviesGenre_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" />
+    <Property Name="Genre_ID" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Genre" Relationship="Self.FK_MoviesGenre_Genre" FromRole="MoviesGenre" ToRole="Genre" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_MoviesGenre_Movies" FromRole="MoviesGenre" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserReview">
+    <Key>
+      <PropertyRef Name="UserReviews_ID" />
+    </Key>
+    <Property Name="UserReviews_ID" Type="Int32" Nullable="false" />
+    <Property Name="Users_ID" Type="Int32" Nullable="false" />
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" />
+    <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_UserReviews_Movies" FromRole="UserReviews" ToRole="Movies" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserReviews_Users" FromRole="UserReviews" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UsersRoles_ID" />
+    </Key>
+    <Property Name="UsersRoles_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users_ID" Type="Int32" />
+    <Property Name="Roles_ID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Roles_UserRoles" FromRole="UserRoles" ToRole="Roles" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserRoles_Users" FromRole="UserRoles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Users_ID" />
+    </Key>
+    <Property Name="Users_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="salt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="passwordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ccNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cvc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ccexpiration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserReviews" Relationship="Self.FK_UserReviews_Users" FromRole="Users" ToRole="UserReviews" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRoles_Users" FromRole="Users" ToRole="UserRoles" />
+    <NavigationProperty Name="UsersRentals" Relationship="Self.FK_UsersRental_Users" FromRole="Users" ToRole="UsersRental" />
+    <NavigationProperty Name="UsersSessions" Relationship="Self.FK_UsersSession_Users" FromRole="Users" ToRole="UsersSession" />
+    <NavigationProperty Name="UsersSocialMedias" Relationship="Self.FK_UsersSocialMedia_Users" FromRole="Users" ToRole="UsersSocialMedia" />
+    <NavigationProperty Name="UsersTransactions" Relationship="Self.FK_UsersTransaction_Users" FromRole="Users" ToRole="UsersTransaction" />
+  </EntityType>
+  <EntityType Name="UsersRental">
+    <Key>
+      <PropertyRef Name="UserMovieRental_ID" />
+    </Key>
+    <Property Name="UserMovieRental_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users_ID" Type="Int32" Nullable="false" />
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" />
+    <Property Name="RentalDateFrom" Type="DateTime" Precision="3" />
+    <Property Name="RentalDateTo" Type="DateTime" Precision="3" />
+    <Property Name="UsersTransaction_ID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_UsersRental_Movies" FromRole="UsersRental" ToRole="Movies" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersRental_Users" FromRole="UsersRental" ToRole="Users" />
+    <NavigationProperty Name="UsersTransaction" Relationship="Self.FK_UsersRental_UsersTransaction" FromRole="UsersRental" ToRole="UsersTransaction" />
+  </EntityType>
+  <EntityType Name="UsersSession">
+    <Key>
+      <PropertyRef Name="UsersSession_ID" />
+    </Key>
+    <Property Name="UsersSession_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users_ID" Type="Int32" Nullable="false" />
+    <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersSession_Users" FromRole="UsersSession" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UsersSocialMedia">
+    <Key>
+      <PropertyRef Name="UsersSocialMedia_ID" />
+    </Key>
+    <Property Name="UsersSocialMedia_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users_ID" Type="Int32" Nullable="false" />
+    <Property Name="socialMediaAccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="socialMediaUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="network" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersSocialMedia_Users" FromRole="UsersSocialMedia" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UsersTransaction">
+    <Key>
+      <PropertyRef Name="UsersTransaction_ID" />
+    </Key>
+    <Property Name="UsersTransaction_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users_ID" Type="Int32" Nullable="false" />
+    <Property Name="AuthCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isShipped" Type="Boolean" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersTransaction_Users" FromRole="UsersTransaction" ToRole="Users" />
+    <NavigationProperty Name="UsersRentals" Relationship="Self.FK_UsersRental_UsersTransaction" FromRole="UsersTransaction" ToRole="UsersRental" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Roles_ID" />
+    </Key>
+    <Property Name="Roles_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK_Roles_UserRoles" FromRole="Roles" ToRole="UserRoles" />
+  </EntityType>
+  <Association Name="FK_ActorMovies_Actor">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+    <End Role="ActorMovies" Type="Self.ActorMovy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actor">
+        <PropertyRef Name="Actor_ID" />
+      </Principal>
+      <Dependent Role="ActorMovies">
+        <PropertyRef Name="Actor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActorMovies_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="ActorMovies" Type="Self.ActorMovy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="ActorMovies">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoviesGenre_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+    <End Role="MoviesGenre" Type="Self.MoviesGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Genre_ID" />
+      </Principal>
+      <Dependent Role="MoviesGenre">
+        <PropertyRef Name="Genre_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movies_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+    <End Role="Movies" Type="Self.Movy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Language_ID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="Language_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoviesGenre_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="MoviesGenre" Type="Self.MoviesGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="MoviesGenre">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserReviews_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="UserReviews" Type="Self.UserReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="UserReviews">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRental_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="UsersRental" Type="Self.UsersRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="UsersRental">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserReviews_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserReviews" Type="Self.UserReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UserReviews">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_UserRoles">
+    <End Role="UserRoles" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoles">
+        <PropertyRef Name="UsersRoles_ID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="Roles_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserRoles" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRental_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersRental" Type="Self.UsersRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UsersRental">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersSession_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersSession" Type="Self.UsersSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UsersSession">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersSocialMedia_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersSocialMedia" Type="Self.UsersSocialMedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UsersSocialMedia">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersTransaction_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersTransaction" Type="Self.UsersTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Users_ID" />
+      </Principal>
+      <Dependent Role="UsersTransaction">
+        <PropertyRef Name="Users_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRental_UsersTransaction">
+    <End Role="UsersTransaction" Type="Self.UsersTransaction" Multiplicity="0..1" />
+    <End Role="UsersRental" Type="Self.UsersRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsersTransaction">
+        <PropertyRef Name="UsersTransaction_ID" />
+      </Principal>
+      <Dependent Role="UsersRental">
+        <PropertyRef Name="UsersTransaction_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MovieEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Actors" EntityType="Self.Actor" />
+    <EntitySet Name="ActorMovies" EntityType="Self.ActorMovy" />
+    <EntitySet Name="Genres" EntityType="Self.Genre" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Movies" EntityType="Self.Movy" />
+    <EntitySet Name="MoviesGenres" EntityType="Self.MoviesGenre" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserReviews" EntityType="Self.UserReview" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UsersRentals" EntityType="Self.UsersRental" />
+    <EntitySet Name="UsersSessions" EntityType="Self.UsersSession" />
+    <EntitySet Name="UsersSocialMedias" EntityType="Self.UsersSocialMedia" />
+    <EntitySet Name="UsersTransactions" EntityType="Self.UsersTransaction" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <AssociationSet Name="FK_ActorMovies_Actor" Association="Self.FK_ActorMovies_Actor">
+      <End Role="Actor" EntitySet="Actors" />
+      <End Role="ActorMovies" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActorMovies_Movies" Association="Self.FK_ActorMovies_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="ActorMovies" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoviesGenre_Genre" Association="Self.FK_MoviesGenre_Genre">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="MoviesGenre" EntitySet="MoviesGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movies_Language" Association="Self.FK_Movies_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoviesGenre_Movies" Association="Self.FK_MoviesGenre_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MoviesGenre" EntitySet="MoviesGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserReviews_Movies" Association="Self.FK_UserReviews_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="UserReviews" EntitySet="UserReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRental_Movies" Association="Self.FK_UsersRental_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="UsersRental" EntitySet="UsersRentals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserReviews_Users" Association="Self.FK_UserReviews_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserReviews" EntitySet="UserReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_UserRoles" Association="Self.FK_Roles_UserRoles">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users" Association="Self.FK_UserRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRental_Users" Association="Self.FK_UsersRental_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRental" EntitySet="UsersRentals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersSession_Users" Association="Self.FK_UsersSession_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersSession" EntitySet="UsersSessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersSocialMedia_Users" Association="Self.FK_UsersSocialMedia_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersSocialMedia" EntitySet="UsersSocialMedias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersTransaction_Users" Association="Self.FK_UsersTransaction_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersTransaction" EntitySet="UsersTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRental_UsersTransaction" Association="Self.FK_UsersRental_UsersTransaction">
+      <End Role="UsersTransaction" EntitySet="UsersTransactions" />
+      <End Role="UsersRental" EntitySet="UsersRentals" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,11 @@
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.IBLL.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.IBLL.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\obj\Debug\MovieAPI.IBLL.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\obj\Debug\MovieAPI.IBLL.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\obj\Debug\MovieAPI.IBLL.csprojResolveAssemblyReference.cache
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.Data.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.Model.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\EntityFramework.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.Data.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\MovieAPI.Model.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.IBLL\bin\Debug\EntityFramework.xml

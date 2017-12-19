@@ -1,0 +1,5 @@
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Model\bin\Debug\MovieAPI.Model.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Model\bin\Debug\MovieAPI.Model.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Model\obj\Debug\MovieAPI.Model.dll
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Model\obj\Debug\MovieAPI.Model.pdb
+C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI.Model\obj\Debug\MovieAPI.Model.csprojResolveAssemblyReference.cache
