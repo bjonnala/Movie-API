@@ -17,12 +17,11 @@ namespace MovieAPI.Model
         public string result { get; set; }
     }
 
-    public class LoginRegisterUserResponse
-    {
-        public string id { get; set; }
-        public string authorizeKey { get; set; }
-        public string chatAuthKey { get; set; }
-    }
+    //public class LoginUserResponse
+    //{
+    //    public string id { get; set; }
+    //    public string authorizeKey { get; set; }
+    //}
 
     public class IncrementNotificationCountRequestJSON
     {
@@ -30,14 +29,14 @@ namespace MovieAPI.Model
         public string otherUserId { get; set; }
     }
 
-    public class LoginRequestJSON
-    {
-        public string email { get; set; }
-        public string passKey { get; set; }
-        public string network { get; set; }
-        public string socialMediaAccessToken { get; set; }
-        public string socialMediaUserId { get; set; }
-    }
+    //public class LoginRequestJSON
+    //{
+    //    public string email { get; set; }
+    //    public string passKey { get; set; }
+    //    public string network { get; set; }
+    //    public string socialMediaAccessToken { get; set; }
+    //    public string socialMediaUserId { get; set; }
+    //}
 
     public class GetUserDetailsRequestJSON
     {
@@ -156,32 +155,6 @@ namespace MovieAPI.Model
         public string phone { get; set; }
         public string loveLabId { get; set; }
     }
-
-    public class ComparePhotoRequestJSON
-    {
-        public string userId { get; set; }
-        public string alb_img_url { get; set; }
-        public string cam_img_url { get; set; }
-    }
-
-    public class ComparePhotoResponseJSON
-    {
-        public int match_score { get; set; }
-        public string verified { get; set; }
-        public string message { get; set; }
-    }
-
-    public class QuizGenerateRequestJSON
-    {
-        public string userId { get; set; }
-    }
-
-    public class GenerateCriminalReportRequestJSON
-    {
-        public string userId { get; set; }
-    }
-
-   
 
     public class VerifyEmailRequestJSON
     {

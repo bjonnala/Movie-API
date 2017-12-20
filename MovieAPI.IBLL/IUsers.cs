@@ -10,8 +10,11 @@ namespace MovieAPI.IBLL
 {
     public interface IUsers
     {
-        string getUserDetails(int UserId);
         bool checkDuplicateEmail(string email);
-        int createUser(RegisterUserRequestJSON req);
+        int createUser(RegisterRequestJSON req);
+        int signIn(LoginRequestJSON req);
+        UserResponseJSON getUserDetails(int UserId);
+        bool isValidUserId(int UserId);
+        UpdateUserResponseJSON updateUserDetails(UpdateUserRequestJSON req);
     }
 }

@@ -10,5 +10,6 @@ namespace MovieAPI.IBLL
     {
         string getAccessToken(int userId);
         string updateAccessToken(int userId, string accessToken);
+        bool isValidUserId(int userId);
     }
 }

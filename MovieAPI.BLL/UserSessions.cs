@@ -11,7 +11,16 @@ namespace MovieAPI.BLL
 {
     public class UserSessions : IUserSessions
     {
-        
+        public bool isValidUserId(int userId)
+        {
+            using (MovieEntities db = new MovieEntities())
+            {
+                var count = (from u in db.Users
+                             where u.Users_ID == userId
+                             select u).Count();
+                return count > 0 ? true : false;
+            }
+        }
         public string getAccessToken(int userId)
         {
             string token = string.Empty;

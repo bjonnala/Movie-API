@@ -8,7 +8,7 @@ using MovieAPI.Model;
 
 namespace MovieAPI.Validators
 {
-    public class usersInsertValidator : AbstractValidator<RegisterUserRequestJSON>
+    public class usersInsertValidator : AbstractValidator<RegisterRequestJSON>
     {
         
         public usersInsertValidator()
