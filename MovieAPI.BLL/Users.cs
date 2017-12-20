@@ -203,16 +203,10 @@ namespace MovieAPI.BLL
                         db.UsersSocialMedias.Add(usm);
                         db.SaveChanges();
                     }
-                                     
                 }
-
-               
-
-
-                
-
-                // return whole user object except password.
             }
+
+            // return whole user object except password.
             UserResponseJSON usr = getUserDetails(req.userId);
             UpdateUserResponseJSON res = new UpdateUserResponseJSON();
             res.address = usr.address;
@@ -223,8 +217,12 @@ namespace MovieAPI.BLL
             res.createdDate = usr.createdDate;
             res.cvc = usr.cvc;
             res.email = usr.email;
+            res.firstName = usr.firstName;
+            res.lastName = usr.lastName;
+            res.SocialMediaLogins = usr.SocialMediaLogins;
+            res.state = usr.state;
+            res.zipcode = usr.zipcode;
 
-            // add more properties
             return res;
 
         }
