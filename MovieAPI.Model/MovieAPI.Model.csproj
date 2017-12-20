@@ -42,9 +42,12 @@
   <ItemGroup>
     <Compile Include="AddMovieRequestJSON.cs" />
     <Compile Include="AuthData.cs" />
+    <Compile Include="DeleteMovieRequestJSON.cs" />
+    <Compile Include="GetMovieResponseJSON.cs" />
     <Compile Include="JSONClasses.cs" />
     <Compile Include="LoginRequestJSON.cs" />
     <Compile Include="LoginResponseJSON.cs" />
+    <Compile Include="Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterRequestJSON.cs" />
     <Compile Include="RegisterResponseJSON.cs" />

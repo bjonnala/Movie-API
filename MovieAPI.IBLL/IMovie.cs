@@ -10,5 +10,7 @@ namespace MovieAPI.IBLL
     public interface IMovie
     {
         string addMovie(AddMovieRequestJSON req);
+        GetMovieResponseJSON getMovieDetails(int? movieId);
+        void deleteMovie(int? movieId);
     }
 }

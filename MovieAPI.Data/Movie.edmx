@@ -333,6 +333,7 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <Parameter Name="language" Type="varchar" Mode="In" />
           <Parameter Name="releasedate" Type="datetime" Mode="In" />
           <Parameter Name="actors" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Result" Type="int" Mode="InOut" />
         </Function>
         <Function Name="pr_RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="varchar" Mode="In" />
@@ -871,6 +872,7 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
             <Parameter Name="language" Mode="In" Type="String" />
             <Parameter Name="releasedate" Mode="In" Type="DateTime" />
             <Parameter Name="actors" Mode="In" Type="String" />
+            <Parameter Name="Result" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>

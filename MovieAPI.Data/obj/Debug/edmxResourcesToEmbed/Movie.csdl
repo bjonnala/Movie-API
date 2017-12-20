@@ -441,6 +441,7 @@
       <Parameter Name="language" Mode="In" Type="String" />
       <Parameter Name="releasedate" Mode="In" Type="DateTime" />
       <Parameter Name="actors" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
 </Schema>

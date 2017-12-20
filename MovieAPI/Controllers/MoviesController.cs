@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Web.Http;
 using MovieAPI.IBLL;
 using MovieAPI.Model;
 using MovieAPI.CustomAtrributes;
-using MovieAPI.Validators;
-using FluentValidation.Results;
 
 namespace MovieAPI.Controllers
 {
-    [ValidateAuthorizeKey]
+
     public class MoviesController : ApiController
     {
         IMovie movie;
@@ -19,6 +16,7 @@ namespace MovieAPI.Controllers
             movie = movieparam;
         }
 
+        [ValidateAuthorizeKey]
         [Route("api/v1/addMovies")]
         [HttpPost]
         public HttpResponseMessage addMovies(AddMovieRequestJSON ureq)
@@ -29,20 +27,48 @@ namespace MovieAPI.Controllers
                 return Utils.CreateEmptyErrorResponse(req);
             }
 
-            return Utils.CreateSuccessResponse(req, movie.addMovie(ureq));
+            string res = movie.addMovie(ureq);
+
+            if (res.Contains("ERR"))
+            {
+                return Utils.CreateErrorResponse(req, res);
+            }
+            
+            return Utils.CreateSuccessResponse(req,res);
         }
 
-        //[Route("api/v1/getMovieDetails")]
-        //[HttpGet]
-        //public HttpResponseMessage getMovieDetails(int? movieId)
-        //{
-        //    req = Request;
-        //    if (movieId == null)
-        //    {
-        //        return Utils.CreateEmptyErrorResponse(req);
-        //    }
+        [Route("api/v1/getMovieDetails")]
+        [HttpGet]
+        public HttpResponseMessage getMovieDetails(int? movieId)
+        {
+            req = Request;
+            if (movieId == null)
+            {
+                return Utils.CreateErrorResponse(req,"MovieId is required");
+            }
 
-        //    return Utils.CreateSuccessResponse(req, movie.getMovieDetails(movieId));
-        //}
+            return Utils.CreateSuccessResponse(req, movie.getMovieDetails(movieId));
+        }
+        [ValidateAuthorizeKey]
+        [Route("api/v1/deleteMovie")]
+        [HttpDelete]
+        public HttpResponseMessage deleteMovie(DeleteMovieRequestJSON des)
+        {
+            req = Request;
+            if (des == null)
+            {
+                return Utils.CreateEmptyErrorResponse(req);
+            }
+            if (string.IsNullOrWhiteSpace(des.movieId.ToString()))
+            {
+                return Utils.CreateErrorResponse(req, "MovieId is required");
+            }
+            if (string.IsNullOrWhiteSpace(des.userId.ToString()))
+            {
+                return Utils.CreateErrorResponse(req, "userId is required");
+            }
+            movie.deleteMovie(des.movieId);
+            return Utils.CreateSuccessResponse(req,"Movie Deleted successfully");
+        }
     }
 }

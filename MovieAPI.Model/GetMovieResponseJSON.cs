@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieAPI.Model
 {
-    public class AddMovieRequestJSON
+    public class GetMovieResponseJSON
     {
-        public int userId { get; set; }
-        public List<Movie> Movies { get; set; }
-        
+        public Movie Movie { get; set; }
     }
-
-    
 }
