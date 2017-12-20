@@ -67,6 +67,7 @@ namespace MovieAPI.App_Start
         {
             kernel.Bind<IUserSessions>().To<UserSessions>();
             kernel.Bind<IUsers>().To<Users>();
+            kernel.Bind<IMovie>().To<Movie>();
         }        
     }
 }

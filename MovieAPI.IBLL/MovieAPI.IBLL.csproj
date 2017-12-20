@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMovie.cs" />
     <Compile Include="IUsers.cs" />
     <Compile Include="IUserSessions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

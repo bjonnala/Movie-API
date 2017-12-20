@@ -74,5 +74,34 @@ namespace MovieAPI.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_RegisterUser", emailParameter, saltParameter, hashedpasswordParameter, networkParameter, socialMediaAccessTokenParameter, socialMediaUserIdParameter, firstnameParameter, userId);
         }
+    
+        public virtual int pr_AddMovies(string title, string description, string genre, string language, Nullable<System.DateTime> releasedate, string actors)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            var genreParameter = genre != null ?
+                new ObjectParameter("genre", genre) :
+                new ObjectParameter("genre", typeof(string));
+    
+            var languageParameter = language != null ?
+                new ObjectParameter("language", language) :
+                new ObjectParameter("language", typeof(string));
+    
+            var releasedateParameter = releasedate.HasValue ?
+                new ObjectParameter("releasedate", releasedate) :
+                new ObjectParameter("releasedate", typeof(System.DateTime));
+    
+            var actorsParameter = actors != null ?
+                new ObjectParameter("actors", actors) :
+                new ObjectParameter("actors", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_AddMovies", titleParameter, descriptionParameter, genreParameter, languageParameter, releasedateParameter, actorsParameter);
+        }
     }
 }

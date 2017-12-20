@@ -65,7 +65,16 @@ namespace MovieAPI.CustomAtrributes
                 // If userId is passed via request body
                 string body = content.Result;  // gets request body
                 var results = JsonConvert.DeserializeObject<dynamic>(body); // dynamic means the JSON object can be resolved at run time.
-                userId = results.userId.ToString();
+                if (results.userId != null)
+                {
+                    userId = results.userId.ToString();
+                }
+                else
+                {
+                    va_errors = "Missing userId";
+                    return va_errors;
+                }
+                
             }
 
             if (!string.IsNullOrWhiteSpace(userId))

@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Movie.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UserSessions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

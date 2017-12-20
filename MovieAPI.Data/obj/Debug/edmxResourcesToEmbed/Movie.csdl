@@ -434,5 +434,13 @@
       <Parameter Name="firstname" Mode="In" Type="String" />
       <Parameter Name="userId" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="pr_AddMovies">
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="genre" Mode="In" Type="String" />
+      <Parameter Name="language" Mode="In" Type="String" />
+      <Parameter Name="releasedate" Mode="In" Type="DateTime" />
+      <Parameter Name="actors" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

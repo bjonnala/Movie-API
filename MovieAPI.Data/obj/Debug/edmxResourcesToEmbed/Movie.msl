@@ -155,5 +155,6 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="MovieModel.Store.pr_RegisterUser" />
+    <FunctionImportMapping FunctionImportName="pr_AddMovies" FunctionName="MovieModel.Store.pr_AddMovies" />
   </EntityContainerMapping>
 </Mapping>
