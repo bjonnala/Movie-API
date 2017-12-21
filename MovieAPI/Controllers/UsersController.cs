@@ -65,5 +65,21 @@ namespace MovieAPI.Controllers
         }
 
 
+        [Route("api/v1/getUserRentals")]
+        [HttpGet]
+        public HttpResponseMessage getUserRentals(int? userId)
+        {
+            req = Request;
+            if (userId == null)
+            {
+                return Utils.CreateErrorResponse(req, "UserId is required");
+            }
+            if (string.IsNullOrWhiteSpace(userId.ToString()))
+            {
+                return Utils.CreateErrorResponse(req, "UserId is required");
+            }
+            return Utils.CreateSuccessResponse(req, users.getUserRentals(userId.Value));
+        }
+
     }
 }

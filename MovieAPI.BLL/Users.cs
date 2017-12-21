@@ -9,6 +9,7 @@ using MovieAPI.Data;
 using MovieAPI.Model;
 using System.Security.Cryptography;
 using System.Text;
+using MovieAPI;
 using System.Text.RegularExpressions;
 
 namespace MovieAPI.BLL
@@ -287,6 +288,129 @@ namespace MovieAPI.BLL
 
             return userId;
 
+        }
+
+        private DateTime convertToDate(string dateValue)
+        {
+            DateTime dDate = DateTime.Now;
+            if (!string.IsNullOrWhiteSpace(dateValue))
+            {
+               
+                try
+                {
+                    dDate = DateTime.Parse(dateValue);
+                }
+                catch
+                {
+                    return dDate;
+                }
+                if (dDate.Year < 1901) { return dDate; }
+                return dDate;
+            }
+            else
+            {
+                return dDate;
+            }
+
+        }
+
+        public string rentMovies(RentMoviesRequestJSON res)
+        {
+            string status = "";
+            try
+            {
+
+                using (MovieEntities db = new MovieEntities())
+                {
+
+                    foreach (var item in res.moviesIds)
+                    {
+                        UsersRental ur = new UsersRental();
+                        ur.Users_ID = res.userId;
+                        ur.Movies_ID = item;
+                        DateTime datefrom = convertToDate(res.RentalDateFrom);
+                        DateTime dateto = convertToDate(res.RentalDateTo);
+                        if (datefrom == DateTime.Now)
+                        {
+                            ur.RentalDateFrom = null;
+                        }
+                        else
+                        {
+                            ur.RentalDateFrom = datefrom;
+                        }
+                        if (dateto == DateTime.Now)
+                        {
+                            ur.RentalDateTo = null;
+                        }
+                        else
+                        {
+                            ur.RentalDateTo = dateto;
+                        }
+                        ur.UsersTransaction_ID = null;
+                        ur.CreatedDate = DateTime.UtcNow;
+                        db.UsersRentals.Add(ur);
+                        db.SaveChanges();
+                    }
+
+                    /* if authorizePayment is set to true user credit card details can obtained from Users table.
+                    if true, we can get these details from Users table and charge accordingly using Stripe or Authorize.net library
+                    */
+                    status = "Rented successfully";
+                }
+            }
+            catch
+            {
+
+                status = "ERR: There seems to be issue with rental. Please try again.";
+            }
+
+            return status;
+
+
+        }
+
+        public RentedMoviesResponseJSON getUserRentals(int userId)
+        {
+
+            RentedMoviesResponseJSON res = new RentedMoviesResponseJSON();
+            using (MovieEntities db = new MovieEntities())
+            {
+                var rental = (from u in db.UsersRentals
+                              join m in db.Movies on u.Movies_ID equals m.Movies_ID
+                              join p in db.MoviesRentalPrices on m.Movies_ID equals p.Movies_ID
+                              where u.Users_ID == userId
+                              select new
+                              {
+                                  UserId = u.Users_ID,
+                                  movieTitle = m.Title,
+                                  rentaldatefrom = u.RentalDateFrom,
+                                  rentaldateto = u.RentalDateTo,
+                                  price = p.Price
+                           }).ToList();
+
+                List<RentalInfo> lstrentals = new List<RentalInfo>();
+                foreach (var item in rental)
+                {
+                    RentalInfo ri = new RentalInfo();
+                    if (item.rentaldatefrom.HasValue)
+                    {
+                        ri.rentaldatefrom = item.rentaldatefrom.Value.ToShortDateString();
+                    }
+                    if (item.rentaldateto.HasValue)
+                    {
+                        ri.rentaldateto = item.rentaldateto.Value.ToShortDateString();
+                    }
+                    ri.title = item.movieTitle;
+                    if (item.price.HasValue)
+                    {
+                        ri.price = item.price.Value;
+                    }
+                    lstrentals.Add(ri);
+                }
+
+                res.rentals = lstrentals;
+                return res;
+            }
         }
     }
 }

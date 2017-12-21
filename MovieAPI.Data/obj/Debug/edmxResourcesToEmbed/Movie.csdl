@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Movie" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Actor">
     <Key>
       <PropertyRef Name="Actor_ID" />
@@ -49,6 +49,7 @@
     <NavigationProperty Name="ActorMovies" Relationship="Self.FK_ActorMovies_Movies" FromRole="Movies" ToRole="ActorMovies" />
     <NavigationProperty Name="Language" Relationship="Self.FK_Movies_Language" FromRole="Movies" ToRole="Language" />
     <NavigationProperty Name="MoviesGenres" Relationship="Self.FK_MoviesGenre_Movies" FromRole="Movies" ToRole="MoviesGenre" />
+    <NavigationProperty Name="MoviesRentalPrices" Relationship="Self.FK_MoviesRentalPrice_Movies" FromRole="Movies" ToRole="MoviesRentalPrice" />
     <NavigationProperty Name="UserReviews" Relationship="Self.FK_UserReviews_Movies" FromRole="Movies" ToRole="UserReviews" />
     <NavigationProperty Name="UsersRentals" Relationship="Self.FK_UsersRental_Movies" FromRole="Movies" ToRole="UsersRental" />
   </EntityType>
@@ -62,6 +63,16 @@
     <Property Name="createdDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Genre" Relationship="Self.FK_MoviesGenre_Genre" FromRole="MoviesGenre" ToRole="Genre" />
     <NavigationProperty Name="Movy" Relationship="Self.FK_MoviesGenre_Movies" FromRole="MoviesGenre" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="MoviesRentalPrice">
+    <Key>
+      <PropertyRef Name="MoviesRentalPrice_ID" />
+    </Key>
+    <Property Name="MoviesRentalPrice_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Movies_ID" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_MoviesRentalPrice_Movies" FromRole="MoviesRentalPrice" ToRole="Movies" />
   </EntityType>
   <EntityType Name="UserReview">
     <Key>
@@ -229,6 +240,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MoviesRentalPrice_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="MoviesRentalPrice" Type="Self.MoviesRentalPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="MoviesRentalPrice">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserReviews_Movies">
     <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
     <End Role="UserReviews" Type="Self.UserReview" Multiplicity="*" />
@@ -356,6 +379,7 @@
     <EntitySet Name="Languages" EntityType="Self.Language" />
     <EntitySet Name="Movies" EntityType="Self.Movy" />
     <EntitySet Name="MoviesGenres" EntityType="Self.MoviesGenre" />
+    <EntitySet Name="MoviesRentalPrices" EntityType="Self.MoviesRentalPrice" />
     <EntitySet Name="UserReviews" EntityType="Self.UserReview" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -383,6 +407,10 @@
     <AssociationSet Name="FK_MoviesGenre_Movies" Association="Self.FK_MoviesGenre_Movies">
       <End Role="Movies" EntitySet="Movies" />
       <End Role="MoviesGenre" EntitySet="MoviesGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoviesRentalPrice_Movies" Association="Self.FK_MoviesRentalPrice_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MoviesRentalPrice" EntitySet="MoviesRentalPrices" />
     </AssociationSet>
     <AssociationSet Name="FK_UserReviews_Movies" Association="Self.FK_UserReviews_Movies">
       <End Role="Movies" EntitySet="Movies" />
@@ -424,6 +452,16 @@
       <End Role="UsersTransaction" EntitySet="UsersTransactions" />
       <End Role="UsersRental" EntitySet="UsersRentals" />
     </AssociationSet>
+    <FunctionImport Name="pr_AddMovies">
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="genre" Mode="In" Type="String" />
+      <Parameter Name="language" Mode="In" Type="String" />
+      <Parameter Name="releasedate" Mode="In" Type="DateTime" />
+      <Parameter Name="actors" Mode="In" Type="String" />
+      <Parameter Name="price" Mode="In" Type="Decimal" />
+      <Parameter Name="Result" Mode="InOut" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="pr_RegisterUser">
       <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="salt" Mode="In" Type="String" />
@@ -434,16 +472,7 @@
       <Parameter Name="firstname" Mode="In" Type="String" />
       <Parameter Name="userId" Mode="InOut" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="pr_AddMovies">
-      <Parameter Name="title" Mode="In" Type="String" />
-      <Parameter Name="description" Mode="In" Type="String" />
-      <Parameter Name="genre" Mode="In" Type="String" />
-      <Parameter Name="language" Mode="In" Type="String" />
-      <Parameter Name="releasedate" Mode="In" Type="DateTime" />
-      <Parameter Name="actors" Mode="In" Type="String" />
-      <Parameter Name="Result" Mode="InOut" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="pr_SearchMovieCatalog" ReturnType="Collection(MovieModel.pr_SearchMovieCatalog_Result)">
+    <FunctionImport Name="pr_SearchMovieCatalog" ReturnType="Collection(Movie.pr_SearchMovieCatalog_Result)">
       <Parameter Name="keyword" Mode="In" Type="String" />
       <Parameter Name="PageNumber" Mode="In" Type="Int32" />
       <Parameter Name="RowspPage" Mode="In" Type="Int32" />
@@ -458,6 +487,7 @@
     <Property Type="String" Name="language" Nullable="true" MaxLength="150" />
     <Property Type="String" Name="genre" Nullable="true" />
     <Property Type="String" Name="actors" Nullable="true" />
+    <Property Type="Decimal" Name="price" Nullable="true" Precision="18" Scale="2" />
     <Property Type="Int64" Name="rownum" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -19,6 +19,7 @@ namespace MovieAPI.Data
         {
             this.ActorMovies = new HashSet<ActorMovy>();
             this.MoviesGenres = new HashSet<MoviesGenre>();
+            this.MoviesRentalPrices = new HashSet<MoviesRentalPrice>();
             this.UserReviews = new HashSet<UserReview>();
             this.UsersRentals = new HashSet<UsersRental>();
         }
@@ -35,6 +36,8 @@ namespace MovieAPI.Data
         public virtual Language Language { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MoviesGenre> MoviesGenres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MoviesRentalPrice> MoviesRentalPrices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserReview> UserReviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

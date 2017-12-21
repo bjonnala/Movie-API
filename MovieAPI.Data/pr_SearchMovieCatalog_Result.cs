@@ -21,6 +21,7 @@ namespace MovieAPI.Data
         public string language { get; set; }
         public string genre { get; set; }
         public string actors { get; set; }
+        public Nullable<decimal> price { get; set; }
         public Nullable<long> rownum { get; set; }
     }
 }

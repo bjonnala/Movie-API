@@ -4,36 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="277046b6b5154b6980f26d344cf68a69" Name="Diagram1">
-        <EntityTypeShape EntityType="MovieModel.Actor" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.ActorMovy" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Genre" Width="1.5" PointX="5.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Language" Width="1.5" PointX="1.5" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Movy" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.MoviesGenre" Width="1.5" PointX="8" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UserReview" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UserRole" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UsersRental" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UsersSession" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UsersSocialMedia" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.UsersTransaction" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Role" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
-        <AssociationConnector Association="MovieModel.FK_ActorMovies_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_ActorMovies_Movies" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_MoviesGenre_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_Movies_Language" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_MoviesGenre_Movies" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UserReviews_Movies" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersRental_Movies" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UserReviews_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_Roles_UserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UserRoles_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersRental_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersSession_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersSocialMedia_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersTransaction_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_UsersRental_UsersTransaction" ManuallyRouted="false" />
+      <Diagram DiagramId="f36e1290bbee4862abfe2034a96df195" Name="Diagram1">
+        <EntityTypeShape EntityType="Movie.Actor" Width="1.5" PointX="3.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.ActorMovy" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.Genre" Width="1.5" PointX="5.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.Language" Width="1.5" PointX="1.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.Movy" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.MoviesGenre" Width="1.5" PointX="8" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.MoviesRentalPrice" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UserReview" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UserRole" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UsersRental" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UsersSession" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UsersSocialMedia" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.UsersTransaction" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie.Role" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="Movie.FK_ActorMovies_Actor" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_ActorMovies_Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_MoviesGenre_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_Movies_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_MoviesGenre_Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_MoviesRentalPrice_Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UserReviews_Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersRental_Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UserReviews_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_Roles_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UserRoles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersRental_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersSession_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersSocialMedia_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersTransaction_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie.FK_UsersRental_UsersTransaction" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MovieModelStoreContainer" CdmEntityContainer="MovieEntities">
+  <EntityContainerMapping StorageEntityContainer="MovieStoreContainer" CdmEntityContainer="MovieEntities">
     <EntitySetMapping Name="Actors">
-      <EntityTypeMapping TypeName="MovieModel.Actor">
+      <EntityTypeMapping TypeName="Movie.Actor">
         <MappingFragment StoreEntitySet="Actor">
           <ScalarProperty Name="Actor_ID" ColumnName="Actor_ID" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ActorMovies">
-      <EntityTypeMapping TypeName="MovieModel.ActorMovy">
+      <EntityTypeMapping TypeName="Movie.ActorMovy">
         <MappingFragment StoreEntitySet="ActorMovies">
           <ScalarProperty Name="ActorMovies_ID" ColumnName="ActorMovies_ID" />
           <ScalarProperty Name="Actor_ID" ColumnName="Actor_ID" />
@@ -19,7 +19,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Genres">
-      <EntityTypeMapping TypeName="MovieModel.Genre">
+      <EntityTypeMapping TypeName="Movie.Genre">
         <MappingFragment StoreEntitySet="Genre">
           <ScalarProperty Name="Genre_ID" ColumnName="Genre_ID" />
           <ScalarProperty Name="Genre1" ColumnName="Genre" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Languages">
-      <EntityTypeMapping TypeName="MovieModel.Language">
+      <EntityTypeMapping TypeName="Movie.Language">
         <MappingFragment StoreEntitySet="Language">
           <ScalarProperty Name="Language_ID" ColumnName="Language_ID" />
           <ScalarProperty Name="Language1" ColumnName="Language" />
@@ -37,7 +37,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Movies">
-      <EntityTypeMapping TypeName="MovieModel.Movy">
+      <EntityTypeMapping TypeName="Movie.Movy">
         <MappingFragment StoreEntitySet="Movies">
           <ScalarProperty Name="Movies_ID" ColumnName="Movies_ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -49,7 +49,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MoviesGenres">
-      <EntityTypeMapping TypeName="MovieModel.MoviesGenre">
+      <EntityTypeMapping TypeName="Movie.MoviesGenre">
         <MappingFragment StoreEntitySet="MoviesGenre">
           <ScalarProperty Name="MoviesGenre_ID" ColumnName="MoviesGenre_ID" />
           <ScalarProperty Name="Movies_ID" ColumnName="Movies_ID" />
@@ -58,8 +58,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MoviesRentalPrices">
+      <EntityTypeMapping TypeName="Movie.MoviesRentalPrice">
+        <MappingFragment StoreEntitySet="MoviesRentalPrice">
+          <ScalarProperty Name="MoviesRentalPrice_ID" ColumnName="MoviesRentalPrice_ID" />
+          <ScalarProperty Name="Movies_ID" ColumnName="Movies_ID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserReviews">
-      <EntityTypeMapping TypeName="MovieModel.UserReview">
+      <EntityTypeMapping TypeName="Movie.UserReview">
         <MappingFragment StoreEntitySet="UserReviews">
           <ScalarProperty Name="UserReviews_ID" ColumnName="UserReviews_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -70,7 +80,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRoles">
-      <EntityTypeMapping TypeName="MovieModel.UserRole">
+      <EntityTypeMapping TypeName="Movie.UserRole">
         <MappingFragment StoreEntitySet="UserRoles">
           <ScalarProperty Name="UsersRoles_ID" ColumnName="UsersRoles_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -79,7 +89,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="MovieModel.User">
+      <EntityTypeMapping TypeName="Movie.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -100,7 +110,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersRentals">
-      <EntityTypeMapping TypeName="MovieModel.UsersRental">
+      <EntityTypeMapping TypeName="Movie.UsersRental">
         <MappingFragment StoreEntitySet="UsersRental">
           <ScalarProperty Name="UserMovieRental_ID" ColumnName="UserMovieRental_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -113,7 +123,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersSessions">
-      <EntityTypeMapping TypeName="MovieModel.UsersSession">
+      <EntityTypeMapping TypeName="Movie.UsersSession">
         <MappingFragment StoreEntitySet="UsersSession">
           <ScalarProperty Name="UsersSession_ID" ColumnName="UsersSession_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -123,7 +133,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersSocialMedias">
-      <EntityTypeMapping TypeName="MovieModel.UsersSocialMedia">
+      <EntityTypeMapping TypeName="Movie.UsersSocialMedia">
         <MappingFragment StoreEntitySet="UsersSocialMedia">
           <ScalarProperty Name="UsersSocialMedia_ID" ColumnName="UsersSocialMedia_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -134,7 +144,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersTransactions">
-      <EntityTypeMapping TypeName="MovieModel.UsersTransaction">
+      <EntityTypeMapping TypeName="Movie.UsersTransaction">
         <MappingFragment StoreEntitySet="UsersTransaction">
           <ScalarProperty Name="UsersTransaction_ID" ColumnName="UsersTransaction_ID" />
           <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
@@ -146,7 +156,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="MovieModel.Role">
+      <EntityTypeMapping TypeName="Movie.Role">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -154,11 +164,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="MovieModel.Store.pr_RegisterUser" />
-    <FunctionImportMapping FunctionImportName="pr_AddMovies" FunctionName="MovieModel.Store.pr_AddMovies" />
-    <FunctionImportMapping FunctionImportName="pr_SearchMovieCatalog" FunctionName="MovieModel.Store.pr_SearchMovieCatalog">
+    <FunctionImportMapping FunctionImportName="pr_AddMovies" FunctionName="Movie.Store.pr_AddMovies" />
+    <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="Movie.Store.pr_RegisterUser" />
+    <FunctionImportMapping FunctionImportName="pr_SearchMovieCatalog" FunctionName="Movie.Store.pr_SearchMovieCatalog">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="MovieModel.pr_SearchMovieCatalog_Result">
+        <ComplexTypeMapping TypeName="Movie.pr_SearchMovieCatalog_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="movies_id" ColumnName="movies_id" />
           <ScalarProperty Name="title" ColumnName="title" />
@@ -167,6 +177,7 @@
           <ScalarProperty Name="language" ColumnName="language" />
           <ScalarProperty Name="genre" ColumnName="genre" />
           <ScalarProperty Name="actors" ColumnName="actors" />
+          <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="rownum" ColumnName="rownum" />
         </ComplexTypeMapping>
       </ResultMapping>

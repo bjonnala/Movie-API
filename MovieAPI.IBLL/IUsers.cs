@@ -16,5 +16,7 @@ namespace MovieAPI.IBLL
         UserResponseJSON getUserDetails(int UserId);
         bool isValidUserId(int UserId);
         UpdateUserResponseJSON updateUserDetails(UpdateUserRequestJSON req);
+        string rentMovies(RentMoviesRequestJSON res);
+        RentedMoviesResponseJSON getUserRentals(int userId);
     }
 }

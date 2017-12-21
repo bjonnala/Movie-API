@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Movie.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Actor">
     <Key>
       <PropertyRef Name="Actor_ID" />
@@ -50,6 +50,15 @@
     <Property Name="Movies_ID" Type="int" Nullable="false" />
     <Property Name="Genre_ID" Type="int" Nullable="false" />
     <Property Name="createdDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MoviesRentalPrice">
+    <Key>
+      <PropertyRef Name="MoviesRentalPrice_ID" />
+    </Key>
+    <Property Name="MoviesRentalPrice_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Movies_ID" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -201,6 +210,18 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MoviesRentalPrice_Movies">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="MoviesRentalPrice" Type="Self.MoviesRentalPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movies_ID" />
+      </Principal>
+      <Dependent Role="MoviesRentalPrice">
+        <PropertyRef Name="Movies_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Roles_UserRoles">
     <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
     <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
@@ -328,6 +349,7 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <Parameter Name="language" Type="varchar" Mode="In" />
     <Parameter Name="releasedate" Type="datetime" Mode="In" />
     <Parameter Name="actors" Type="varchar(max)" Mode="In" />
+    <Parameter Name="price" Type="decimal" Mode="In" />
     <Parameter Name="Result" Type="int" Mode="InOut" />
   </Function>
   <Function Name="pr_RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -345,13 +367,14 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <Parameter Name="PageNumber" Type="int" Mode="In" />
     <Parameter Name="RowspPage" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="MovieModelStoreContainer">
+  <EntityContainer Name="MovieStoreContainer">
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MoviesGenre" EntityType="Self.MoviesGenre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MoviesRentalPrice" EntityType="Self.MoviesRentalPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserReviews" EntityType="Self.UserReviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -385,6 +408,10 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <AssociationSet Name="FK_MoviesGenre_Movies" Association="Self.FK_MoviesGenre_Movies">
       <End Role="Movies" EntitySet="Movies" />
       <End Role="MoviesGenre" EntitySet="MoviesGenre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoviesRentalPrice_Movies" Association="Self.FK_MoviesRentalPrice_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MoviesRentalPrice" EntitySet="MoviesRentalPrice" />
     </AssociationSet>
     <AssociationSet Name="FK_Roles_UserRoles" Association="Self.FK_Roles_UserRoles">
       <End Role="UserRoles" EntitySet="UserRoles" />

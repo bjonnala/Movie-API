@@ -84,13 +84,13 @@ namespace MovieAPI.CustomAtrributes
                     {
                         if (!_usersession.isValidUserId(res))
                         {
-                            va_errors = "UserId does not exist.";
+                            va_errors = "Invalid UserId.";
                             return va_errors;
                         }
                     }
                     else
                     {
-                        va_errors = "UserId does not exist.";
+                        va_errors = "Invalid UserId.";
                         return va_errors;
                     }
                     if (!string.IsNullOrWhiteSpace(resauthorizeKey))

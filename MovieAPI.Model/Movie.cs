@@ -14,5 +14,6 @@ namespace MovieAPI.Model
         public string language { get; set; }
         public string releasedate { get; set; }
         public List<string> actors { get; set; }
+        public decimal? price { get; set; }
     }
 }

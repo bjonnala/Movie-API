@@ -494,5 +494,18 @@ namespace MovieAPI
             else
                 return (false);
         }
+
+        public static bool checkDate(String date)
+        {
+            try
+            {
+                DateTime dt = DateTime.Parse(date);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

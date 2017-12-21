@@ -34,8 +34,13 @@ namespace MovieAPI.BLL
                     string language = !string.IsNullOrWhiteSpace(item.language) ? item.language : null;
                     string genre = !string.IsNullOrWhiteSpace(item.genre) ? item.genre : null;
                     string actors = !string.IsNullOrWhiteSpace(sb.ToString().TrimEnd(',')) ? sb.ToString().TrimEnd(',') : null;
+                    decimal finalprice = 0.0m;
+                    if (item.price.HasValue)
+                    {
+                        finalprice = item.price.Value;
 
-                    db.pr_AddMovies(title, description, genre, language, dt, actors,output_result);
+                    }
+                    db.pr_AddMovies(title, description, genre, language, dt, actors,finalprice,output_result);
                     if (output_result.Value != null)
                     {
                         int ouserId = (int)output_result.Value;
@@ -186,6 +191,7 @@ namespace MovieAPI.BLL
                         m.releasedate = "";
                     }
                     m.title = item.title;
+                    m.price = item.price;
                     List<string> actors = new List<string>();
                     if (!string.IsNullOrWhiteSpace(item.actors))
                     {
