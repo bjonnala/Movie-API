@@ -345,6 +345,11 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           <Parameter Name="firstname" Type="varchar" Mode="In" />
           <Parameter Name="userId" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="pr_SearchMovieCatalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+          <Parameter Name="RowspPage" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="MovieModelStoreContainer">
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" Schema="dbo" store:Type="Tables" />
@@ -874,7 +879,23 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
             <Parameter Name="actors" Mode="In" Type="String" />
             <Parameter Name="Result" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pr_SearchMovieCatalog" ReturnType="Collection(MovieModel.pr_SearchMovieCatalog_Result)">
+            <Parameter Name="keyword" Mode="In" Type="String" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+            <Parameter Name="RowspPage" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="pr_SearchMovieCatalog_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="movies_id" Nullable="true" />
+          <Property Type="String" Name="title" Nullable="true" />
+          <Property Type="DateTime" Name="releasedate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="String" Name="language" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="genre" Nullable="true" />
+          <Property Type="String" Name="actors" Nullable="true" />
+          <Property Type="Int64" Name="rownum" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1036,6 +1057,21 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="MovieModel.Store.pr_RegisterUser" />
           <FunctionImportMapping FunctionImportName="pr_AddMovies" FunctionName="MovieModel.Store.pr_AddMovies" />
+          <FunctionImportMapping FunctionImportName="pr_SearchMovieCatalog" FunctionName="MovieModel.Store.pr_SearchMovieCatalog">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MovieModel.pr_SearchMovieCatalog_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="movies_id" ColumnName="movies_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="releasedate" ColumnName="releasedate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="actors" ColumnName="actors" />
+                <ScalarProperty Name="rownum" ColumnName="rownum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

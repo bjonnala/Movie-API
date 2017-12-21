@@ -340,6 +340,11 @@ warning 6002: The table/view 'Raghu_Test.dbo.Roles' does not have a primary key 
     <Parameter Name="firstname" Type="varchar" Mode="In" />
     <Parameter Name="userId" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="pr_SearchMovieCatalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="keyword" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="RowspPage" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="MovieModelStoreContainer">
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" Schema="dbo" store:Type="Tables" />

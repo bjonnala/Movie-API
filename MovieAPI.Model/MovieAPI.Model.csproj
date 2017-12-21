@@ -51,6 +51,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterRequestJSON.cs" />
     <Compile Include="RegisterResponseJSON.cs" />
+    <Compile Include="SearchMovieCatalogRequestJSON.cs" />
+    <Compile Include="SearchMovieCatalogResponseJSON.cs" />
     <Compile Include="UpdateUserRequestJSON.cs" />
     <Compile Include="UpdateUserResponseJSON.cs" />
     <Compile Include="UserResponseJSON.cs" />

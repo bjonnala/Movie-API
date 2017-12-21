@@ -103,5 +103,22 @@ namespace MovieAPI.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_AddMovies", titleParameter, descriptionParameter, genreParameter, languageParameter, releasedateParameter, actorsParameter, result);
         }
+    
+        public virtual ObjectResult<pr_SearchMovieCatalog_Result> pr_SearchMovieCatalog(string keyword, Nullable<int> pageNumber, Nullable<int> rowspPage)
+        {
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            var pageNumberParameter = pageNumber.HasValue ?
+                new ObjectParameter("PageNumber", pageNumber) :
+                new ObjectParameter("PageNumber", typeof(int));
+    
+            var rowspPageParameter = rowspPage.HasValue ?
+                new ObjectParameter("RowspPage", rowspPage) :
+                new ObjectParameter("RowspPage", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pr_SearchMovieCatalog_Result>("pr_SearchMovieCatalog", keywordParameter, pageNumberParameter, rowspPageParameter);
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace MovieAPI.IBLL
         string addMovie(AddMovieRequestJSON req);
         GetMovieResponseJSON getMovieDetails(int? movieId);
         void deleteMovie(int? movieId);
+        SearchMovieCatalogResponseJSON searchMovieCatalog(SearchMovieCatalogRequestJSON req);
     }
 }

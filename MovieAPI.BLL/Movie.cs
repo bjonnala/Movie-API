@@ -161,5 +161,50 @@ namespace MovieAPI.BLL
             }
 
         }
+
+        public SearchMovieCatalogResponseJSON searchMovieCatalog(SearchMovieCatalogRequestJSON req)
+        {
+            SearchMovieCatalogResponseJSON res = new SearchMovieCatalogResponseJSON();
+            using (MovieEntities db = new MovieEntities())
+            {
+                string keyword = !string.IsNullOrWhiteSpace(req.keyword) ? req.keyword : "";
+
+                var query = db.pr_SearchMovieCatalog(keyword, req.pageNumber, req.pageSize).ToList();
+                List<Model.Movie> lst = new List<Model.Movie>();
+                foreach (var item in query)
+                {
+                    Model.Movie m = new Model.Movie();
+                    m.description = item.description;
+                    m.genre = item.genre;
+                    m.language = item.language;
+                    if (item.releasedate.HasValue)
+                    {
+                        m.releasedate = item.releasedate.Value.ToShortDateString();
+                    }
+                    else
+                    {
+                        m.releasedate = "";
+                    }
+                    m.title = item.title;
+                    List<string> actors = new List<string>();
+                    if (!string.IsNullOrWhiteSpace(item.actors))
+                    {
+                        string[] actorarr = item.actors.Split(',');
+                        foreach (var actor in actorarr)
+                        {
+                            actors.Add(actor);
+                        }
+                        m.actors = actors;
+                    }
+                    else
+                    {
+                        m.actors = actors;
+                    }
+                    lst.Add(m);
+                }
+                res.Movies = lst;
+            }
+            return res;
+        }
     }
 }

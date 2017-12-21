@@ -37,6 +37,30 @@ namespace MovieAPI.Controllers
             return Utils.CreateSuccessResponse(req,res);
         }
 
+        
+        [Route("api/v1/searchMovieCatalog")]
+        [HttpPost]
+        public HttpResponseMessage searchMovieCatalog(SearchMovieCatalogRequestJSON ureq)
+        {
+            req = Request;
+            if (ureq == null)
+            {
+                return Utils.CreateEmptyErrorResponse(req);
+            }
+
+            if (string.IsNullOrWhiteSpace(ureq.pageNumber.ToString()))
+            {
+                return Utils.CreateErrorResponse(req, "pageNumber is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(ureq.pageSize.ToString()))
+            {
+                return Utils.CreateErrorResponse(req, "pageSize is required");
+            }
+
+            return Utils.CreateSuccessResponse(req, movie.searchMovieCatalog(ureq));
+        }
+
         [Route("api/v1/getMovieDetails")]
         [HttpGet]
         public HttpResponseMessage getMovieDetails(int? movieId)
