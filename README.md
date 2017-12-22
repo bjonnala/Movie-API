@@ -21,6 +21,7 @@ For instance, on my local machine it was set to http://localhost:56020/
 * password: Password1
 
 ## Database connection string in MovieAPI web.config file needs to be updated accordingly.
+* movies.bak is the database backup file added to the project.
 ```
 Connection string MovieEntities needs to replaced with SQL server credentials.
 ```
@@ -57,7 +58,5 @@ This layer can be considered as the Data Access layer of the project.This contai
 * Fluent Validation Library for validating purposes.
 * Entity framework ORM (Database First)
 * Repository design pattern
-
-## Note
- I am pretty much familiar with asp.net identity for membership layer but for this project made custom membership layer.
+* I am pretty much familiar with asp.net identity for membership layer but for this project made custom membership layer.
 
