@@ -1,7 +1,7 @@
 # Movie-API
 MovieAPI lets one to search through movie catalog, signin and signup accounts, update their profile and allows to rent movies on demand.
 
-## API Documentation URL: [Documentation](https://documenter.getpostman.com/view/3412451/movieapi/7Ln9hd1#93f569de-2ba8-ccd2-dde5-3726fcafb525)
+## API Documentation URL: [Documentation](https://documenter.getpostman.com/view/3412451/movieapi/7Ln9hd1#)
 
 ## Getting Started
 Once Movie-API is downloaded from github onto local-machine, be sure to change to replace the base url for API as per your localhost URL (when run in Visual Studio locally).
