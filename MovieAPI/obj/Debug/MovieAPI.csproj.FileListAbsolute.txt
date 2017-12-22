@@ -72,3 +72,6 @@ C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI\b
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI\bin\FluentValidation.dll
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI\bin\FluentValidation.xml
 C:\Users\raghu.jonnala\Documents\Visual Studio 2015\Projects\MovieAPI\MovieAPI\bin\JWT.dll
+C:\Users\raghu.jonnala\documents\visual studio 2015\Projects\MovieAPI\MovieAPI\bin\System.Web.Cors.dll
+C:\Users\raghu.jonnala\documents\visual studio 2015\Projects\MovieAPI\MovieAPI\bin\System.Web.Http.Cors.dll
+C:\Users\raghu.jonnala\documents\visual studio 2015\Projects\MovieAPI\MovieAPI\bin\System.Web.Http.Cors.xml
