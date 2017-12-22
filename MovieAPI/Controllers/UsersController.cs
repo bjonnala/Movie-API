@@ -57,10 +57,10 @@ namespace MovieAPI.Controllers
             {
                 return Utils.CreateErrorResponse(req, "userId is required");
             }
-            if (users.checkDuplicateEmail(ureq.email))
-            {
-                return Utils.CreateErrorResponse(req, "email already exists. Please update to a different one.");
-            }
+            //if (users.checkDuplicateEmail(ureq.email))
+            //{
+            //    return Utils.CreateErrorResponse(req, "email already exists. Please update to a different one.");
+            //}
             return Utils.CreateSuccessResponse(req, users.updateUserDetails(ureq));
         }
 

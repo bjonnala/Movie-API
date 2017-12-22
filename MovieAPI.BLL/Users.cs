@@ -159,7 +159,7 @@ namespace MovieAPI.BLL
                     query.city = !string.IsNullOrWhiteSpace(req.city) ? req.city : null;
                     query.country = !string.IsNullOrWhiteSpace(req.country) ? req.country : null;
                     query.cvc = !string.IsNullOrWhiteSpace(req.cvc) ? req.cvc : null;
-                    query.email = !string.IsNullOrWhiteSpace(req.email) ? req.email : null;
+                    //query.email = !string.IsNullOrWhiteSpace(req.email) ? req.email : null;
                     query.firstName = !string.IsNullOrWhiteSpace(req.firstName) ? req.firstName : null;
                     query.lastName = !string.IsNullOrWhiteSpace(req.lastName) ? req.lastName : null;
                     query.state =  !string.IsNullOrWhiteSpace(req.state) ? req.state : null;
@@ -182,7 +182,7 @@ namespace MovieAPI.BLL
                 {
                     // Delete existing and insert from UsersSocialMedia
 
-                    var result = from r in db.UsersSocialMedias where r.Users_ID == req.userId select r;
+                    var result = (from r in db.UsersSocialMedias where r.Users_ID == req.userId select r).ToList();
                     if (result.Count() > 0)
                     {
                         foreach (UsersSocialMedia p in result)

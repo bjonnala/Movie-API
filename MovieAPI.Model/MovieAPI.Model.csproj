@@ -44,7 +44,6 @@
     <Compile Include="AuthData.cs" />
     <Compile Include="DeleteMovieRequestJSON.cs" />
     <Compile Include="GetMovieResponseJSON.cs" />
-    <Compile Include="JSONClasses.cs" />
     <Compile Include="LoginRequestJSON.cs" />
     <Compile Include="LoginResponseJSON.cs" />
     <Compile Include="Movie.cs" />
@@ -54,6 +53,8 @@
     <Compile Include="RentalInfo.cs" />
     <Compile Include="RentedMoviesResponseJSON.cs" />
     <Compile Include="RentMoviesRequestJSON.cs" />
+    <Compile Include="ResponseError.cs" />
+    <Compile Include="ResponseValidResult.cs" />
     <Compile Include="SearchMovieCatalogRequestJSON.cs" />
     <Compile Include="SearchMovieCatalogResponseJSON.cs" />
     <Compile Include="UpdateUserRequestJSON.cs" />

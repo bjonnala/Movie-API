@@ -24,21 +24,13 @@ namespace MovieAPI
         {
             ResponseError res_err = new ResponseError();
             res_err.err = errormessage;
-            HttpResponseMessage response = req.CreateResponse(res_err);
+            HttpResponseMessage response = req.CreateResponse(HttpStatusCode.BadRequest,res_err);
             return response;
         }
 
         public static HttpResponseMessage CreateSuccessResponse(HttpRequestMessage req, Object obj)
         {
             HttpResponseMessage response = req.CreateResponse(HttpStatusCode.OK, obj);
-            return response;
-        }
-
-        public static HttpResponseMessage CreateSuccessJSONResponse(HttpRequestMessage req, object msg)
-        {
-            ResponseValidResult valid_res = new ResponseValidResult();
-            valid_res.result = msg.ToString();
-            HttpResponseMessage response = req.CreateResponse(HttpStatusCode.OK, valid_res);
             return response;
         }
 

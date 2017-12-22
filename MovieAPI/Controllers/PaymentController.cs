@@ -60,5 +60,11 @@ namespace MovieAPI.Controllers
             }
             return Utils.CreateSuccessResponse(req, users.rentMovies(ureq));
         }
+
+
+
+
+
+
     }
 }
