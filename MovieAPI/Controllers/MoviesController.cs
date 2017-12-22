@@ -27,6 +27,11 @@ namespace MovieAPI.Controllers
                 return Utils.CreateEmptyErrorResponse(req);
             }
 
+            if (!movie.isAdmin(ureq.userId))
+            {
+                return Utils.CreateErrorResponse(req, "Only an admin is allowed to do this operation");
+            }
+
             string res = movie.addMovie(ureq);
 
             if (res.Contains("ERR"))
@@ -90,6 +95,10 @@ namespace MovieAPI.Controllers
             if (string.IsNullOrWhiteSpace(des.userId.ToString()))
             {
                 return Utils.CreateErrorResponse(req, "userId is required");
+            }
+            if (!movie.isAdmin(des.userId))
+            {
+                return Utils.CreateErrorResponse(req, "Only an admin is allowed to do this operation");
             }
             movie.deleteMovie(des.movieId);
             return Utils.CreateSuccessResponse(req,"Movie Deleted successfully");

@@ -13,5 +13,6 @@ namespace MovieAPI.IBLL
         GetMovieResponseJSON getMovieDetails(int? movieId);
         void deleteMovie(int? movieId);
         SearchMovieCatalogResponseJSON searchMovieCatalog(SearchMovieCatalogRequestJSON req);
+        bool isAdmin(int userId);
     }
 }

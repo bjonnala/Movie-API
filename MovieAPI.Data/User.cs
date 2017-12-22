@@ -18,11 +18,11 @@ namespace MovieAPI.Data
         public User()
         {
             this.UserReviews = new HashSet<UserReview>();
-            this.UserRoles = new HashSet<UserRole>();
             this.UsersRentals = new HashSet<UsersRental>();
             this.UsersSessions = new HashSet<UsersSession>();
             this.UsersSocialMedias = new HashSet<UsersSocialMedia>();
             this.UsersTransactions = new HashSet<UsersTransaction>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int Users_ID { get; set; }
@@ -44,8 +44,6 @@ namespace MovieAPI.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserReview> UserReviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRental> UsersRentals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersSession> UsersSessions { get; set; }
@@ -53,5 +51,7 @@ namespace MovieAPI.Data
         public virtual ICollection<UsersSocialMedia> UsersSocialMedias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersTransaction> UsersTransactions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

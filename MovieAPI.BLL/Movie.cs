@@ -118,7 +118,6 @@ namespace MovieAPI.BLL
             return movieres;
         }
 
-
         public void deleteMovie(int? movieId)
         {
             using (MovieEntities db = new MovieEntities())
@@ -211,6 +210,34 @@ namespace MovieAPI.BLL
                 res.Movies = lst;
             }
             return res;
+        }
+
+        public bool isAdmin(int userId)
+        {
+            bool isValid = false;
+            using (MovieEntities db = new MovieEntities())
+            {
+                var userrole = (from u in db.Users
+                              join ur in db.UserRoles on u.Users_ID equals ur.Users_ID
+                              join r in db.Roles on ur.Roles_ID equals r.Roles_ID
+                              where ur.Users_ID == userId
+                              select new
+                              {
+                                  role = r.RoleName
+
+                              }).ToList();
+
+                foreach (var item in userrole)
+                {
+                    if (item.role.ToLower() == "admin")
+                    {
+                        isValid = true;
+                    }
+                }
+
+            }
+
+            return isValid;
         }
     }
 }

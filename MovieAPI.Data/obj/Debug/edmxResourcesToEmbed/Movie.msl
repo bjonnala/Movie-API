@@ -79,15 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserRoles">
-      <EntityTypeMapping TypeName="Movie.UserRole">
-        <MappingFragment StoreEntitySet="UserRoles">
-          <ScalarProperty Name="UsersRoles_ID" ColumnName="UsersRoles_ID" />
-          <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
-          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="Movie.User">
         <MappingFragment StoreEntitySet="Users">
@@ -155,17 +146,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="Movie.Role">
-        <MappingFragment StoreEntitySet="Roles">
-          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
-          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="pr_AddMovies" FunctionName="Movie.Store.pr_AddMovies" />
-    <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="Movie.Store.pr_RegisterUser" />
     <FunctionImportMapping FunctionImportName="pr_SearchMovieCatalog" FunctionName="Movie.Store.pr_SearchMovieCatalog">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Movie.pr_SearchMovieCatalog_Result">
@@ -182,5 +163,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_RegisterUser" FunctionName="Movie.Store.pr_RegisterUser" />
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="Movie.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+          <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
+          <ScalarProperty Name="UsersRoles_ID" ColumnName="UsersRoles_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Movie.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

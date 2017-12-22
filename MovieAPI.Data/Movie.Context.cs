@@ -35,12 +35,12 @@ namespace MovieAPI.Data
         public virtual DbSet<MoviesGenre> MoviesGenres { get; set; }
         public virtual DbSet<MoviesRentalPrice> MoviesRentalPrices { get; set; }
         public virtual DbSet<UserReview> UserReviews { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UsersRental> UsersRentals { get; set; }
         public virtual DbSet<UsersSession> UsersSessions { get; set; }
         public virtual DbSet<UsersSocialMedia> UsersSocialMedias { get; set; }
         public virtual DbSet<UsersTransaction> UsersTransactions { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
     
         public virtual int pr_AddMovies(string title, string description, string genre, string language, Nullable<System.DateTime> releasedate, string actors, Nullable<decimal> price, ObjectParameter result)
@@ -76,6 +76,23 @@ namespace MovieAPI.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_AddMovies", titleParameter, descriptionParameter, genreParameter, languageParameter, releasedateParameter, actorsParameter, priceParameter, result);
         }
     
+        public virtual ObjectResult<pr_SearchMovieCatalog_Result> pr_SearchMovieCatalog(string keyword, Nullable<int> pageNumber, Nullable<int> rowspPage)
+        {
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            var pageNumberParameter = pageNumber.HasValue ?
+                new ObjectParameter("PageNumber", pageNumber) :
+                new ObjectParameter("PageNumber", typeof(int));
+    
+            var rowspPageParameter = rowspPage.HasValue ?
+                new ObjectParameter("RowspPage", rowspPage) :
+                new ObjectParameter("RowspPage", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pr_SearchMovieCatalog_Result>("pr_SearchMovieCatalog", keywordParameter, pageNumberParameter, rowspPageParameter);
+        }
+    
         public virtual int pr_RegisterUser(string email, string salt, string hashedpassword, string network, string socialMediaAccessToken, string socialMediaUserId, string firstname, ObjectParameter userId)
         {
             var emailParameter = email != null ?
@@ -107,23 +124,6 @@ namespace MovieAPI.Data
                 new ObjectParameter("firstname", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_RegisterUser", emailParameter, saltParameter, hashedpasswordParameter, networkParameter, socialMediaAccessTokenParameter, socialMediaUserIdParameter, firstnameParameter, userId);
-        }
-    
-        public virtual ObjectResult<pr_SearchMovieCatalog_Result> pr_SearchMovieCatalog(string keyword, Nullable<int> pageNumber, Nullable<int> rowspPage)
-        {
-            var keywordParameter = keyword != null ?
-                new ObjectParameter("keyword", keyword) :
-                new ObjectParameter("keyword", typeof(string));
-    
-            var pageNumberParameter = pageNumber.HasValue ?
-                new ObjectParameter("PageNumber", pageNumber) :
-                new ObjectParameter("PageNumber", typeof(int));
-    
-            var rowspPageParameter = rowspPage.HasValue ?
-                new ObjectParameter("RowspPage", rowspPage) :
-                new ObjectParameter("RowspPage", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pr_SearchMovieCatalog_Result>("pr_SearchMovieCatalog", keywordParameter, pageNumberParameter, rowspPageParameter);
         }
     }
 }
