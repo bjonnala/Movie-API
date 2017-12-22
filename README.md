@@ -9,12 +9,15 @@ MovieAPI lets one to search through movie catalog, signin and signup accounts, u
 Once Movie-API is downloaded from github onto local-machine, be sure to change to replace the base url for API as per your localhost URL (when run in Visual Studio locally).
 On deployment to any other environment, either staging or production base url needs to be updated.
 
-## Database connection string in web.config needs to be updated accordingly.
+## Database connection string in MovieAPI web.config file needs to be updated accordingly.
+
+```
+Connection string MovieEntities needs to replaced with SQL server credentials.
+```
 
 ```
 For instance, on my local machine it was set to http://localhost:56020/ when the solution ran in my local machine Visual Studio.
 ```
-
 
 ## Technical Writeup - Architecture
 
